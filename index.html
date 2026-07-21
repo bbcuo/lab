@@ -3,66 +3,443 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🧪 实验站点</title>
+  <title>bbcuo - 个人主页</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-      color: #e0e0e0;
-      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ========== 导航栏 ========== */
+    nav {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 20px;
+    }
+    nav .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      padding: 40px 20px;
+      height: 60px;
+    }
+    nav .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+    nav .nav-links a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: #555;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+    nav .nav-links a:hover {
+      color: #3498db;
+    }
+
+    /* ========== 头部区域 ========== */
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      text-align: center;
+      padding: 80px 20px 60px;
     }
     header h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(90deg, #00d2ff, #3a7bd5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 42px;
+      margin-bottom: 10px;
     }
-    header p { color: #888; margin-top: 8px; text-align: center; }
-    .warning {
-      background: rgba(255,193,7,0.15);
-      border: 1px solid rgba(255,193,7,0.3);
-      border-radius: 8px;
-      padding: 16px 20px;
-      margin: 30px 0;
-      color: #ffc107;
-      max-width: 600px;
+    header p {
+      font-size: 18px;
+      opacity: 0.9;
     }
-    .card {
-      background: rgba(255,255,255,0.05);
+    header .social-links {
+      margin-top: 20px;
+    }
+    header .social-links a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 8px 20px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    header .social-links a:hover {
+      background: rgba(255,255,255,0.35);
+    }
+
+    /* ========== 通用容器 ========== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    section {
+      padding: 60px 0;
+    }
+    section h2 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 40px;
+      color: #2c3e50;
+      position: relative;
+    }
+    section h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #667eea;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ========== 关于我 ========== */
+    #about {
+      background: #fff;
+    }
+    #about .about-content {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 16px;
+      color: #555;
+    }
+    .skill-tags {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .skill-tags span {
+      background: #eef1fd;
+      color: #667eea;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ========== 项目展示 ========== */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .project-card {
+      background: #fff;
       border-radius: 12px;
-      padding: 24px;
-      margin: 20px auto;
-      max-width: 600px;
-      border: 1px solid rgba(255,255,255,0.1);
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card h2 { color: #00d2ff; margin-bottom: 10px; }
-    .card p { color: #aaa; line-height: 1.6; }
-    footer { margin-top: 40px; color: #555; }
-    footer a { color: #3a7bd5; text-decoration: none; }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .project-card .project-icon {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+    .project-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    .project-card p {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 15px;
+    }
+    .project-card .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .project-card .tech-stack span {
+      background: #f0f0f0;
+      color: #666;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    .project-card .project-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #667eea;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .project-card .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== 学习历程 ========== */
+    #learning {
+      background: #fff;
+    }
+    .timeline {
+      position: relative;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #e0e0e0;
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 55px;
+      margin-bottom: 35px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      background: #667eea;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px #667eea;
+    }
+    .timeline-item .timeline-date {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 4px;
+    }
+    .timeline-item h3 {
+      font-size: 17px;
+      color: #2c3e50;
+      margin-bottom: 6px;
+    }
+    .timeline-item p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* ========== 联系方式 ========== */
+    #contact {
+      text-align: center;
+    }
+    #contact .contact-info {
+      font-size: 16px;
+      color: #555;
+    }
+    #contact .contact-info p {
+      margin-bottom: 8px;
+    }
+    #contact a {
+      color: #667eea;
+      text-decoration: none;
+    }
+    #contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== 页脚 ========== */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 600px) {
+      nav .nav-links a {
+        margin-left: 15px;
+        font-size: 13px;
+      }
+      header h1 {
+        font-size: 30px;
+      }
+      section h2 {
+        font-size: 24px;
+      }
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+
+<!-- ===== 导航栏 ===== -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">bbcuo</div>
+    <div class="nav-links">
+      <a href="#about">关于我</a>
+      <a href="#projects">项目</a>
+      <a href="#learning">学习历程</a>
+      <a href="notes.html">学习笔记</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== 头部 ===== -->
 <header>
-  <h1>🧪 实验站点</h1>
-  <p>这里是我用来做各种实验和测试的地方</p>
+  <h1>👋 你好，我是 bbcuo</h1>
+  <p>一个热爱编程的开发者 | 正在不断学习成长中</p>
+  <div class="social-links">
+    <a href="https://github.com/bbcuo" target="_blank">GitHub</a>
+    <!-- 如果你有其他链接，取消注释并修改 -->
+    <!-- <a href="#" target="_blank">博客</a> -->
+    <!-- <a href="#" target="_blank">邮箱</a> -->
+  </div>
 </header>
 
-<div class="warning">
-  ⚠️ 这是一个实验性站点，内容随时可能变化。
-</div>
+<!-- ===== 关于我 ===== -->
+<section id="about">
+  <div class="container">
+    <h2>关于我</h2>
+    <div class="about-content">
+      <p>
+        我是一名编程爱好者，目前正在系统学习 Java 开发。
+        喜欢把学到的知识动手实践，做成一个个小项目。
+        我相信"做中学"是最好的学习方式，每一个项目都是我成长的见证。
+      </p>
+      <div class="skill-tags">
+        <span>Java</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>Git</span>
+        <span>GitHub</span>
+        <span>Markdown</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="card">
-  <h2>📌 实验 #1</h2>
-  <p>在这里开始你的第一个实验，尽情发挥！</p>
-</div>
+<!-- ===== 项目展示 ===== -->
+<section id="projects">
+  <div class="container">
+    <h2>我的项目</h2>
+    <div class="project-grid">
 
+      <!-- 项目卡片 1 -->
+      <div class="project-card">
+        <div class="project-icon">📝</div>
+        <h3>Java 基础练习</h3>
+        <p>Java 基础语法练习，包括数据类型、循环、数组、面向对象等核心知识。</p>
+        <div class="tech-stack">
+          <span>Java</span>
+        </div>
+        <a class="project-link" href="https://github.com/bbcuo/basic-code" target="_blank">查看代码 →</a>
+      </div>
+
+      <!-- 项目卡片 2 - 占位，以后添加 -->
+      <div class="project-card">
+        <div class="project-icon">📦</div>
+        <h3>图书管理系统</h3>
+        <p>基于Java的图书管理系统，包括图书的添加、删除、查询、借阅、归还等功能。</p>
+        <div class="tech-stack">
+          <span>Java</span>
+          <span>OOP</span>
+          <span>集合</span>
+        </div>
+        <!--如果要直接点击链接，把链接亮出来那么
+        <p>请点击下方链接</p>
+        <a class="project-link" herf=https://github.com/bbcuo/library-management-system.git</a>-->
+        <a class="project-link" href="https://github.com/bbcuo/library-management-system" target="_blank">查看代码 →</a>
+      </div>
+
+      <!-- 项目卡片 3 - 占位 -->
+      <div class="project-card">
+        <div class="project-icon">🚀</div>
+        <h3>待添加项目</h3>
+        <p>持续学习中，更多项目即将上线...</p>
+        <div class="tech-stack">
+          <span>Coming Soon</span>
+        </div>
+      </div>
+
+
+      <!-- 项目卡片 4 - 占位 -->
+      <div class="project-card">
+        <div class="project-icon">🚀</div>
+        <h3>待添加项目</h3>
+        <p>持续学习中，更多项目即将上线...</p>
+        <div class="tech-stack">
+          <span>Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 学习历程 ===== -->
+<section id="learning">
+  <div class="container">
+    <h2>编程学习历程</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026年7月</div>
+        <h3>🚀 搭建个人网站</h3>
+        <p>学会了 Git 和 GitHub Pages，成功搭建了自己的第一个个人网站，开启了编程展示之旅。</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026年7月</div>
+        <h3>☕ Java 基础学习</h3>
+        <p>开始系统学习 Java 编程语言，掌握了变量、数据类型、运算符、流程控制等基础知识。</p>
+      </div>
+
+      <!-- 这里可以继续添加新的学习节点 -->
+      <div class="timeline-item">
+        <div class="timeline-date">未来...</div>
+        <h3>📚 持续学习中</h3>
+        <p>计划学习：面向对象编程、集合框架、IO流、数据库、Spring框架...</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 联系方式 ===== -->
+<section id="contact">
+  <div class="container">
+    <h2>联系我</h2>
+    <div class="contact-info">
+      <p>📧 邮箱：<a href="mailto:your-email@example.com">your-email@example.com</a></p>
+      <p>🐙 GitHub：<a href="https://github.com/bbcuo" target="_blank">github.com/bbcuo</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
 <footer>
-  <p>← 返回 <a href="https://bbcuo.github.io/">主站点</a></p>
+  <p>© 2026 bbcuo | 用 GitHub Pages 搭建</p>
 </footer>
+
 </body>
 </html>
